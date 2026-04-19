@@ -1,0 +1,54 @@
+{
+  "name": "@jason-localise/cli",
+  "version": "0.1.0",
+  "description": "Official CLI for Jason — i18n translation automation platform (jason-localise.com)",
+  "keywords": [
+    "i18n",
+    "translation",
+    "localization",
+    "jason",
+    "cli"
+  ],
+  "homepage": "https://jason-localise.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattydn/jason-localise-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattydn/jason-localise-cli/issues"
+  },
+  "license": "MIT",
+  "author": "Matt <contact@jason-localise.com>",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "bin": {
+    "jason": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "kleur": "^4.1.5",
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
