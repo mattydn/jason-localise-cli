@@ -41,6 +41,7 @@ program
   .option("-l, --languages <list>", "Comma-separated languages to pull")
   .option("-o, --output <dir>", "Output directory (defaults to outputDir in .jasonrc)")
   .option("-c, --config <path>", "Path to .jasonrc", ".jasonrc")
+  .option("--validated", "Only download translations that have been approved (validated) in Jason")
   .action(pullCommand)
 
 program.parseAsync(process.argv).catch((err) => {

@@ -10,6 +10,7 @@ interface PullOptions {
   languages?: string
   output?: string
   config?: string
+  validated?: boolean
 }
 
 export async function pullCommand(options: PullOptions): Promise<void> {
@@ -33,10 +34,19 @@ export async function pullCommand(options: PullOptions): Promise<void> {
     }
   }
 
-  const spinner = ora(`Downloading translations...`).start()
+  const onlyApproved = options.validated === true
+  const spinner = ora(
+    onlyApproved
+      ? `Downloading approved translations only...`
+      : `Downloading translations...`
+  ).start()
   let download
   try {
-    download = await downloadTranslations(config, targetLanguages.length ? targetLanguages : undefined)
+    download = await downloadTranslations(
+      config,
+      targetLanguages.length ? targetLanguages : undefined,
+      onlyApproved
+    )
   } catch (e: any) {
     spinner.fail(kleur.red(e.message))
     process.exit(1)

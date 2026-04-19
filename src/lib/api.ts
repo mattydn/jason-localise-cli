@@ -84,12 +84,11 @@ export async function getJobStatus(config: JasonConfig, jobId: string): Promise<
 
 export async function downloadTranslations(
   config: JasonConfig,
-  languages?: string[]
+  languages?: string[],
+  onlyApproved: boolean = false
 ): Promise<DownloadResponse> {
-  const langParam = languages?.length ? `&languages=${languages.join(",")}` : ""
-  return request<DownloadResponse>(
-    config,
-    "GET",
-    `/download?projectId=${config.projectId}${langParam}`
-  )
+  const params = new URLSearchParams({ projectId: config.projectId })
+  if (languages?.length) params.set("languages", languages.join(","))
+  if (onlyApproved) params.set("onlyApproved", "true")
+  return request<DownloadResponse>(config, "GET", `/download?${params.toString()}`)
 }
